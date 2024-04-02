@@ -1,9 +1,7 @@
 spawn(function()
-    while task.wait() do
-        if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
-            if (game.Players.LocalPlayer.Character.Humanoid.AssemblyLinearVelocity).Magnitude > 5 then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.ApplyImpulse(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * 1000)
-            end
-        end
-    end
+	game.Players.LocalPlayer.CharacterAdded:Wait()
+	game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+	while task.wait() do
+		game.Players.LocalPlayer.Character:TranslateBy(((game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity).Unit * 5) * Vector3.new(1,0.01,1))
+	end
 end)
